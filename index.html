@@ -36,10 +36,7 @@
     padding: 2rem 1rem;
   }
 
-  .header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
+  .header { text-align: center; margin-bottom: 3rem; }
 
   .header h1 {
     font-family: 'Fraunces', serif;
@@ -71,10 +68,7 @@
     letter-spacing: 0.05em;
   }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+  .container { max-width: 900px; margin: 0 auto; }
 
   .section-label {
     font-size: 0.65rem;
@@ -133,18 +127,12 @@
     letter-spacing: 0.08em;
   }
 
-  .ln-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
   .ln-row {
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 1rem;
+    margin-bottom: 0.8rem;
   }
 
   .ln-row-title {
@@ -161,11 +149,7 @@
     margin-bottom: 0.5rem;
   }
 
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
+  .input-group { display: flex; flex-direction: column; gap: 0.3rem; }
 
   .input-group label {
     font-size: 0.65rem;
@@ -186,13 +170,8 @@
     transition: border-color 0.2s;
   }
 
-  input[type="number"]:focus, select:focus {
-    border-color: var(--accent);
-  }
-
-  input[type="number"]::placeholder {
-    color: var(--border);
-  }
+  input[type="number"]:focus, select:focus { border-color: var(--accent); }
+  input[type="number"]::placeholder { color: var(--border); }
 
   .ppd-display {
     font-size: 0.7rem;
@@ -215,10 +194,7 @@
     letter-spacing: 0.05em;
   }
 
-  .add-ln-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
+  .add-ln-btn:hover { border-color: var(--accent); color: var(--accent); }
 
   .remove-ln-btn {
     background: transparent;
@@ -288,10 +264,7 @@
     transition: all 0.2s;
   }
 
-  .reset-btn:hover {
-    border-color: var(--warn);
-    color: var(--warn);
-  }
+  .reset-btn:hover { border-color: var(--warn); color: var(--warn); }
 
   .btn-row {
     display: grid;
@@ -299,11 +272,7 @@
     gap: 0.5rem;
   }
 
-  /* Result panel */
-  #result-panel {
-    display: none;
-    margin-top: 1.5rem;
-  }
+  #result-panel { display: none; margin-top: 1.5rem; }
 
   .result-card {
     border-radius: 12px;
@@ -379,7 +348,6 @@
   }
 
   .breakdown-item:last-child { border-bottom: none; }
-
   .breakdown-name { color: var(--muted); }
   .breakdown-val  { font-weight: 500; }
 
@@ -419,12 +387,7 @@
     font-size: 0.78rem;
   }
 
-  .spd-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.25rem 0;
-    color: var(--muted);
-  }
+  .spd-row { display: flex; justify-content: space-between; padding: 0.25rem 0; color: var(--muted); }
 
   .spd-total {
     border-top: 1px solid var(--border);
@@ -443,8 +406,18 @@
     margin-top: 0.5rem;
   }
 
+  .b-info-box {
+    background: rgba(63,185,80,0.06);
+    border: 1px solid rgba(63,185,80,0.2);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.72rem;
+    color: var(--accent2);
+    line-height: 1.6;
+  }
+
   @media (max-width: 600px) {
-    .ln-grid { grid-template-columns: 1fr; }
     .param-row { grid-template-columns: 1fr; }
     .bone-marrow-row { grid-template-columns: 1fr; }
     .btn-row { grid-template-columns: 1fr; }
@@ -499,12 +472,12 @@
     <div class="card-title"><span class="tag-a">A</span> Slezina a játra</div>
     <div class="param-row">
       <div>
-        <div class="param-label">Slezina — baseline (cm)</div>
-        <input type="number" id="spleen_base" placeholder="např. 16.4" step="0.1" min="0" oninput="updateSPD()">
+        <div class="param-label">Slezina — baseline (mm)</div>
+        <input type="number" id="spleen_base" placeholder="např. 164" step="1" min="0" oninput="updateSPD()">
       </div>
       <div>
-        <div class="param-label">Slezina — aktuálně (cm)</div>
-        <input type="number" id="spleen_curr" placeholder="např. 12.9" step="0.1" min="0" oninput="updateSPD()">
+        <div class="param-label">Slezina — aktuálně (mm)</div>
+        <input type="number" id="spleen_curr" placeholder="např. 129" step="1" min="0">
       </div>
     </div>
     <div class="param-row">
@@ -564,7 +537,10 @@
 
   <div class="card group-b">
     <div class="card-title"><span class="tag-b">B</span> Krevní obraz</div>
-
+    <div class="b-info-box">
+      ℹ Skupina B: splněno je ≥1 parametr nad absolutním prahem (Plt ≥100, Hb ≥110 g/L, ANC ≥1500)
+      bez ohledu na baseline hodnotu — dle iwCLL 2018 / PharmaSUG China 2023
+    </div>
     <div class="param-row">
       <div>
         <div class="param-label">Trombocyty — baseline (×10⁹/L)</div>
@@ -575,18 +551,16 @@
         <input type="number" id="plt_curr" placeholder="např. 118" step="1" min="0">
       </div>
     </div>
-
     <div class="param-row">
       <div>
-        <div class="param-label">Hemoglobin — baseline (g/dL)</div>
-        <input type="number" id="hgb_base" placeholder="např. 11.6" step="0.1" min="0">
+        <div class="param-label">Hemoglobin — baseline (g/L)</div>
+        <input type="number" id="hgb_base" placeholder="např. 116" step="1" min="0">
       </div>
       <div>
-        <div class="param-label">Hemoglobin — aktuálně (g/dL)</div>
-        <input type="number" id="hgb_curr" placeholder="např. 13.6" step="0.1" min="0">
+        <div class="param-label">Hemoglobin — aktuálně (g/L)</div>
+        <input type="number" id="hgb_curr" placeholder="např. 136" step="1" min="0">
       </div>
     </div>
-
     <div class="param-row">
       <div>
         <div class="param-label">ANC — baseline (×10⁹/L)</div>
@@ -662,7 +636,6 @@
 
     <div id="note-box" class="note-box" style="display:none"></div>
 
-    <!-- DOCUMENTATION OUTPUT -->
     <div style="margin-top:1.5rem;">
       <div class="section-label">Výstup pro dokumentaci</div>
       <div style="position:relative;">
@@ -720,19 +693,13 @@
     }
   }
 
-  // Returns SPD values depending on active mode
   function getActiveSPD() {
     if (lnMode === 'direct') {
       const base = parseFloat(document.getElementById('spd_direct_base').value);
       const curr = parseFloat(document.getElementById('spd_direct_curr').value);
       const hasBase = !isNaN(base) && base > 0;
       const hasCurr = !isNaN(curr);
-      return {
-        baselineSPD: hasBase ? base : 0,
-        currentSPD: hasCurr ? curr : 0,
-        allNodesSmall: hasCurr && curr === 0,
-        hasAny: hasBase
-      };
+      return { baselineSPD: hasBase ? base : 0, currentSPD: hasCurr ? curr : 0, allNodesSmall: hasCurr && curr === 0, hasAny: hasBase };
     } else {
       return getSPDValues();
     }
@@ -746,7 +713,11 @@
       btn.textContent = '✓ Zkopírováno';
       btn.style.color = 'var(--accent2)';
       btn.style.borderColor = 'var(--accent2)';
-      setTimeout(() => { btn.textContent = '📋 Kopírovat'; btn.style.color = 'var(--muted)'; btn.style.borderColor = 'var(--border)'; }, 2000);
+      setTimeout(() => {
+        btn.textContent = '📋 Kopírovat';
+        btn.style.color = 'var(--muted)';
+        btn.style.borderColor = 'var(--border)';
+      }, 2000);
     });
   }
 
@@ -758,7 +729,6 @@
     const div = document.createElement('div');
     div.id = `ln-row-${id}`;
     div.className = 'ln-row';
-    div.style.marginBottom = '0.8rem';
     div.innerHTML = `
       <div class="ln-row-title">
         Uzlina ${id}
@@ -811,8 +781,7 @@
   }
 
   function updateSPD() {
-    let baselineSPD = 0, currentSPD = 0;
-    let hasData = false;
+    let baselineSPD = 0, currentSPD = 0, hasData = false;
     let rows = document.querySelectorAll('[id^="ln-row-"]');
     let spdHtml = '';
 
@@ -832,7 +801,7 @@
       }
 
       if (ppd_b !== null) { baselineSPD += ppd_b; hasData = true; }
-      if (ppd_c !== null) { currentSPD += ppd_c; }
+      if (ppd_c !== null) currentSPD += ppd_c;
 
       if (ppd_b !== null || ppd_c !== null) {
         spdHtml += `<div class="spd-row"><span>LU ${idx+1}</span><span>${ppd_b ? ppd_b.toFixed(2)+' → ' : '—  → '}${ppd_c !== null ? ppd_c.toFixed(2) : '—'} cm²</span></div>`;
@@ -866,12 +835,11 @@
       const ppd_c = (c1 && c2) ? c1*c2 : null;
       if (ppd_b !== null) { baselineSPD += ppd_b; hasAny = true; }
       if (ppd_c !== null) currentSPD += ppd_c;
-      // Check any node > 1.5cm
       if (c1 && c1 > 1.5) allNodesSmall = false;
       if (c2 && c2 > 1.5) allNodesSmall = false;
     });
 
-    return { baselineSPD, currentSPD, allNodesSmall, hasAny, rows: rows.length };
+    return { baselineSPD, currentSPD, allNodesSmall, hasAny };
   }
 
   function badge(met, label) {
@@ -890,6 +858,7 @@
       const spleen_curr = getVal('spleen_curr');
       const liver_base  = getSelect('liver_base');
       const liver_curr  = getSelect('liver_curr');
+      const const_base  = getSelect('const_base');
       const const_curr  = getSelect('const_curr');
       const lymph_base  = getVal('lymph_base');
       const lymph_curr  = getVal('lymph_curr');
@@ -897,13 +866,14 @@
       const plt_curr    = getVal('plt_curr');
       const hgb_base    = getVal('hgb_base');
       const hgb_curr    = getVal('hgb_curr');
+      const anc_base    = getVal('anc_base');
       const anc_curr    = getVal('anc_curr');
       const marrow      = getSelect('marrow');
       const marrow_pct  = getVal('marrow_pct');
       const new_lesions   = getSelect('new_lesions');
       const new_cytopenia = getSelect('new_cytopenia');
 
-      // ---- CHECK PD FIRST ----
+      // ---- PD CHECK ----
       let isPD = false;
       let pdReason = [];
 
@@ -911,113 +881,79 @@
       if (new_lesions === 'yes') { isPD = true; pdReason.push('Nové lymfatické léze'); }
       if (new_cytopenia === 'yes') { isPD = true; pdReason.push('Nová cytopenie'); }
       if (spleen_base && spleen_curr && spleen_curr > spleen_base * 1.5) { isPD = true; pdReason.push('Slezina vzrostla ≥50%'); }
-      if (hgb_base && hgb_curr && (hgb_base - hgb_curr) >= 2) { isPD = true; pdReason.push('Hb poklesl ≥2 g/dL'); }
+      if (hgb_base && hgb_curr && (hgb_base - hgb_curr) >= 20) { isPD = true; pdReason.push('Hb poklesl ≥20 g/L od baseline'); }
       if (plt_base && plt_curr && plt_curr < plt_base * 0.5) { isPD = true; pdReason.push('Trombocyty poklesly ≥50%'); }
       if (marrow === 'increasing') { isPD = true; pdReason.push('Nárůst CLL buněk v dřeni'); }
 
       // ---- GROUP A ----
-      // RULE: A parameter counts as "improved" ONLY if it was ABNORMAL at baseline AND has now improved.
-      // If baseline was normal → the parameter is N/A (not counted for PR, but required to remain normal for CR).
-      // If baseline not entered → treated as unknown/NA.
-      let A_met = 0;       // number of abnormal-at-baseline A params that have improved
-      let A_abnormal = 0;  // number of A params that were abnormal at baseline
+      let A_met = 0, A_abnormal = 0;
       let aItems = [];
       let lymphocytosis = false;
 
-      // --- LN / SPD ---
-      // Abnormal at baseline = any node with baseline data entered (SPD > 0)
-      // Improved = SPD decreased ≥50% from baseline
-      // CR = all nodes ≤1.5cm
+      // LN / SPD
       let spd_status = 'na';
       let spd_display = '—';
-      let ln_abnormal_at_baseline = hasAny && baselineSPD > 0;
+      const ln_abnormal_at_baseline = hasAny && baselineSPD > 0;
       if (hasAny) {
         if (ln_abnormal_at_baseline && spdPct !== null) {
-          spd_display = `${spdPct > 0 ? '+' : ''}${spdPct.toFixed(1)}% (baseline SPD: ${baselineSPD.toFixed(2)} cm²)`;
+          spd_display = `${spdPct > 0 ? '+' : ''}${spdPct.toFixed(1)}% (baseline: ${baselineSPD.toFixed(2)} cm²)`;
           A_abnormal++;
           if (spdPct <= -50) { A_met++; spd_status = 'met'; }
           else { spd_status = 'notmet'; }
         } else if (!ln_abnormal_at_baseline && currentSPD > 0) {
-          // Only current values entered, no baseline — cannot assess improvement
           spd_display = `SPD aktuálně: ${currentSPD.toFixed(2)} cm²`;
-          spd_status = 'na';
         }
       }
       aItems.push({ name: 'Lymf. uzliny (SPD)', val: spd_display, status: spd_status,
-        note: ln_abnormal_at_baseline ? null : 'Bez baseline hodnot nelze hodnotit zlepšení' });
+        note: (hasAny && !ln_abnormal_at_baseline) ? 'Bez baseline hodnot nelze hodnotit zlepšení' : null });
 
-      // --- Lymphocytes ---
-      // Abnormal at baseline = lymphocytes > 5×10⁹/L (lymphocytosis = >5 per iwCLL)
-      // Improved = decreased ≥50% from baseline OR now <4×10⁹/L (normal)
-      let lymph_status = 'na';
-      let lymph_display = '—';
+      // Lymphocytes
+      let lymph_status = 'na', lymph_display = '—';
       const lymph_base_abnormal = lymph_base !== null && lymph_base > 5;
       if (lymph_curr !== null) {
         lymph_display = `${lymph_curr} ×10⁹/L`;
         if (lymph_base_abnormal) {
           A_abnormal++;
           const lymph_pct = ((lymph_base - lymph_curr) / lymph_base) * 100;
-          if (lymph_curr < 4) {
-            A_met++; lymph_status = 'met'; // normalized
-          } else if (lymph_pct >= 50) {
-            A_met++; lymph_status = 'met'; // ≥50% decrease
-          } else if (lymph_curr >= 5) {
-            lymphocytosis = true; lymph_status = 'warn'; // still elevated — possible redistribution
-          } else {
-            lymph_status = 'notmet';
-          }
+          if (lymph_curr < 4)          { A_met++; lymph_status = 'met'; }
+          else if (lymph_pct >= 50)    { A_met++; lymph_status = 'met'; }
+          else if (lymph_curr >= 5)    { lymphocytosis = true; lymph_status = 'warn'; }
+          else                          { lymph_status = 'notmet'; }
         } else if (lymph_base !== null && !lymph_base_abnormal) {
-          // Normal at baseline — not counted for PR, but must stay normal for CR
           lymph_status = lymph_curr < 4 ? 'na' : 'notmet';
         } else {
-          // No baseline — can still flag lymphocytosis
           if (lymph_curr >= 5) { lymphocytosis = true; lymph_status = 'warn'; }
-          else { lymph_status = 'na'; }
         }
       }
       aItems.push({ name: 'Lymfocyty', val: lymph_display, status: lymph_status,
-        note: !lymph_base_abnormal && lymph_base !== null ? 'Normální při baseline — nezapočítává se pro PR' : null });
+        note: (!lymph_base_abnormal && lymph_base !== null) ? 'Normální při baseline — nezapočítává se pro PR' : null });
 
-      // --- Spleen ---
-      // Abnormal at baseline = spleen_base ≥13cm (splenomegaly)
-      // Improved = decreased ≥50% from baseline OR now <13cm
-      let spleen_status = 'na';
-      let spleen_display = '—';
-      const spleen_base_abnormal = spleen_base !== null && spleen_base >= 13;
+      // Spleen
+      let spleen_status = 'na', spleen_display = '—';
+      const spleen_base_abnormal = spleen_base !== null && spleen_base >= 130;
       if (spleen_curr !== null) {
-        spleen_display = `${spleen_curr} cm`;
+        spleen_display = `${spleen_curr} mm`;
         if (spleen_base_abnormal) {
           A_abnormal++;
           const sp_pct = ((spleen_base - spleen_curr) / spleen_base) * 100;
-          if (sp_pct >= 50 || spleen_curr < 13) { A_met++; spleen_status = 'met'; }
+          if (sp_pct >= 50 || spleen_curr < 130) { A_met++; spleen_status = 'met'; }
           else { spleen_status = 'notmet'; }
-        } else if (spleen_base !== null && !spleen_base_abnormal) {
-          spleen_status = 'na'; // normal at baseline, not counted
-        } else {
-          spleen_status = 'na'; // no baseline
         }
       }
       aItems.push({ name: 'Slezina', val: spleen_display, status: spleen_status,
-        note: spleen_base !== null && !spleen_base_abnormal ? 'Normální při baseline (<13 cm) — nezapočítává se' : null });
+        note: (spleen_base !== null && !spleen_base_abnormal) ? 'Normální při baseline (<130 mm) — nezapočítává se' : null });
 
-      // --- Liver ---
-      // Abnormal at baseline = hepatomegaly selected
-      // Improved = now normal
+      // Liver
       let liver_status = 'na';
       if (liver_base === 'abnormal') {
         A_abnormal++;
         if (liver_curr === 'normal') { A_met++; liver_status = 'met'; }
         else { liver_status = 'notmet'; }
-      } else {
-        liver_status = 'na'; // normal at baseline — not counted
       }
       aItems.push({ name: 'Játra', val: liver_curr === 'normal' ? 'Normální' : 'Hepatomegalie', status: liver_status,
         note: liver_base === 'normal' ? 'Normální při baseline — nezapočítává se' : null });
 
-      // --- Constitutional symptoms ---
-      // Abnormal at baseline = symptoms present
-      // Improved = now absent
-      const const_base = getSelect('const_base');
+      // Constitutional symptoms
       let const_status = 'na';
       const const_base_abnormal = const_base === 'present';
       if (const_base_abnormal) {
@@ -1025,123 +961,101 @@
         if (const_curr === 'none') { A_met++; const_status = 'met'; }
         else { const_status = 'notmet'; }
       } else {
-        // Not present at baseline — must remain absent for CR
         const_status = const_curr === 'none' ? 'na' : 'notmet';
       }
       aItems.push({ name: 'Konstituční příznaky', val: const_curr === 'none' ? 'Žádné' : 'Přítomny', status: const_status,
         note: !const_base_abnormal ? 'Nepřítomny při baseline — nezapočítávají se pro PR' : null });
 
-      // ---- GROUP B ----
-      // RULE: B parameter counts as "met" if EITHER:
-      //   (a) it was abnormal at baseline AND now meets the threshold (≥100 plt, ≥11 Hgb, ≥1500 ANC), OR
-      //   (b) it was abnormal at baseline AND has improved ≥50% from baseline, OR
-      //   (c) it was already normal at baseline (then it is N/A — does not block PR, just ignored)
-      // For PR: need ≥1 B parameter that was abnormal and has improved (or meets threshold).
-      // If ALL B params were normal at baseline → B requirement is considered met by default.
+      // ---- GROUP B — OPRAVENÁ LOGIKA (dle PharmaSUG 2023 / iwCLL 2018) ----
+      // Pravidlo: B je splněno pokud JAKÝKOLI B parametr je nad absolutním prahem.
+      // Nezáleží na baseline hodnotě — "it does not matter if that one B parameter was already above the threshold at baseline"
       let B_met = 0;
-      let B_abnormal = 0;
       let bItems = [];
 
-      // --- Platelets ---
-      // Abnormal = <100×10⁹/L at baseline
-      let plt_status = 'na';
-      const plt_base_abnormal = plt_base !== null && plt_base < 100;
+      // Platelets — práh ≥100 ×10⁹/L
+      let plt_status = 'na', plt_note = null;
       if (plt_curr !== null) {
-        if (plt_base_abnormal) {
-          B_abnormal++;
-          const plt_pct = ((plt_curr - plt_base) / plt_base) * 100;
-          if (plt_curr >= 100 || plt_pct >= 50) { B_met++; plt_status = 'met'; }
-          else { plt_status = 'notmet'; }
-        } else if (plt_base !== null) {
-          plt_status = plt_curr >= 100 ? 'na' : 'notmet'; // was normal, track for worsening only
+        const plt_pct_change = (plt_base !== null && plt_base > 0) ? ((plt_curr - plt_base) / plt_base * 100) : null;
+        if (plt_curr >= 100) {
+          plt_status = 'met'; B_met++;
+          if (plt_base !== null && plt_base >= 100) plt_note = 'Normální již při baseline — splněno dle pravidla skupiny B (iwCLL)';
+        } else if (plt_pct_change !== null && plt_pct_change >= 50) {
+          plt_status = 'met'; B_met++;
+        } else {
+          plt_status = 'notmet';
         }
       }
-      bItems.push({ name: 'Trombocyty', val: plt_curr !== null ? `${plt_curr} ×10⁹/L` : '—', status: plt_status,
-        note: plt_base !== null && !plt_base_abnormal ? 'Normální při baseline — nezapočítává se pro PR' : null });
+      bItems.push({ name: 'Trombocyty', val: plt_curr !== null ? `${plt_curr} ×10⁹/L` : '—', status: plt_status, note: plt_note });
 
-      // --- Hemoglobin ---
-      // Abnormal = <11 g/dL at baseline
-      let hgb_status = 'na';
-      const hgb_base_abnormal = hgb_base !== null && hgb_base < 11;
+      // Hemoglobin — práh ≥110 g/L
+      let hgb_status = 'na', hgb_note = null;
       if (hgb_curr !== null) {
-        if (hgb_base_abnormal) {
-          B_abnormal++;
-          const hgb_pct = ((hgb_curr - hgb_base) / hgb_base) * 100;
-          if (hgb_curr >= 11 || hgb_pct >= 50) { B_met++; hgb_status = 'met'; }
-          else { hgb_status = 'notmet'; }
-        } else if (hgb_base !== null) {
-          hgb_status = hgb_curr >= 11 ? 'na' : 'notmet';
+        const hgb_pct_change = (hgb_base !== null && hgb_base > 0) ? ((hgb_curr - hgb_base) / hgb_base * 100) : null;
+        if (hgb_curr >= 110) {
+          hgb_status = 'met'; B_met++;
+          if (hgb_base !== null && hgb_base >= 110) hgb_note = 'Normální již při baseline — splněno dle pravidla skupiny B (iwCLL)';
+        } else if (hgb_pct_change !== null && hgb_pct_change >= 50) {
+          hgb_status = 'met'; B_met++;
+        } else {
+          hgb_status = 'notmet';
         }
       }
-      bItems.push({ name: 'Hemoglobin', val: hgb_curr !== null ? `${hgb_curr} g/dL` : '—', status: hgb_status,
-        note: hgb_base !== null && !hgb_base_abnormal ? 'Normální při baseline — nezapočítává se pro PR' : null });
+      bItems.push({ name: 'Hemoglobin', val: hgb_curr !== null ? `${hgb_curr} g/L` : '—', status: hgb_status, note: hgb_note });
 
-      // --- ANC ---
-      // Abnormal = <1500×10⁹/L at baseline
-      const anc_base = getVal('anc_base');
-      let anc_status = 'na';
-      const anc_base_abnormal = anc_base !== null && anc_base < 1500;
+      // ANC — práh ≥1500 ×10⁹/L
+      let anc_status = 'na', anc_note = null;
       if (anc_curr !== null) {
-        if (anc_base_abnormal) {
-          B_abnormal++;
-          const anc_pct = ((anc_curr - anc_base) / anc_base) * 100;
-          if (anc_curr >= 1500 || anc_pct >= 50) { B_met++; anc_status = 'met'; }
-          else { anc_status = 'notmet'; }
-        } else if (anc_base !== null) {
-          anc_status = anc_curr >= 1500 ? 'na' : 'notmet';
+        const anc_pct_change = (anc_base !== null && anc_base > 0) ? ((anc_curr - anc_base) / anc_base * 100) : null;
+        if (anc_curr >= 1500) {
+          anc_status = 'met'; B_met++;
+          if (anc_base !== null && anc_base >= 1500) anc_note = 'Normální již při baseline — splněno dle pravidla skupiny B (iwCLL)';
+        } else if (anc_pct_change !== null && anc_pct_change >= 50) {
+          anc_status = 'met'; B_met++;
+        } else {
+          anc_status = 'notmet';
         }
       }
-      bItems.push({ name: 'ANC (neutrofily)', val: anc_curr !== null ? `${anc_curr} ×10⁹/L` : '—', status: anc_status,
-        note: anc_base !== null && !anc_base_abnormal ? 'Normální při baseline — nezapočítává se pro PR' : null });
+      bItems.push({ name: 'ANC (neutrofily)', val: anc_curr !== null ? `${anc_curr} ×10⁹/L` : '—', status: anc_status, note: anc_note });
 
-      // --- Bone marrow ---
-      // For PR: "presence of CLL cells, or of B-lymphoid nodules, or not done" → counts as B met
-      // For CR: must be normocellular, <30% lymphocytes, no lymphoid nodules
+      // Bone marrow — přítomnost CLL buněk nebo not done = splněno pro PR
       let marrow_status = 'na';
-      const marrow_labels = { not_done:'Nebyla provedena', normal:'Normální', cll_cells:'CLL buňky/noduly', nodules:'Lymfoidní noduly', increasing:'Nárůst CLL' };
-      // Marrow is always counted as B — it's a special case per iwCLL (not done = met for PR)
-      if (marrow === 'normal') { B_met++; B_abnormal++; marrow_status = 'met'; }
-      else if (marrow === 'not_done') { B_met++; B_abnormal++; marrow_status = 'warn'; }
-      else if (marrow === 'cll_cells' || marrow === 'nodules') { B_abnormal++; marrow_status = 'warn'; }
-      else if (marrow === 'increasing') { B_abnormal++; marrow_status = 'notmet'; }
+      const marrow_labels = {
+        not_done: 'Nebyla provedena',
+        normal: 'Normální',
+        cll_cells: 'CLL buňky/noduly',
+        nodules: 'Lymfoidní noduly',
+        increasing: 'Nárůst CLL'
+      };
+      if (marrow === 'normal')                            { B_met++; marrow_status = 'met'; }
+      else if (marrow === 'not_done')                     { B_met++; marrow_status = 'warn'; }
+      else if (marrow === 'cll_cells' || marrow === 'nodules') { marrow_status = 'warn'; }
+      else if (marrow === 'increasing')                   { marrow_status = 'notmet'; }
       bItems.push({ name: 'Kostní dřeň', val: marrow_labels[marrow] || '—', status: marrow_status,
         note: marrow === 'not_done' ? 'Nebyla provedena — pro PR se počítá jako splněno (iwCLL 2018)' : null });
 
-      // If ALL B parameters were normal at baseline (B_abnormal === 0 after counting marrow),
-      // then B requirement is considered automatically satisfied
-      const B_all_normal_at_baseline = B_abnormal === 0;
-
       // ---- DETERMINE RESPONSE ----
-      // Special rule: if only 1 parameter total (across A+B) was abnormal before therapy, only 1 needs to improve
-      const total_abnormal = A_abnormal + B_abnormal;
-      const single_param_rule = total_abnormal <= 1;
-
-      // PR threshold accounting for single-param rule
+      const single_param_rule = A_abnormal <= 1;
       const pr_A_threshold = single_param_rule ? 1 : 2;
-      const pr_B_threshold = single_param_rule ? 0 : 1; // if single param rule and it's an A param, B not needed
+      const B_satisfied = B_met >= 1;
+      const pr_met = (A_met >= pr_A_threshold) && B_satisfied;
+
+      // CR kritéria — absolutní prahy pro všechny parametry
+      const crNodes  = !hasAny || allNodesSmall;
+      const crSpleen = spleen_curr === null || spleen_curr < 130;
+      const crLiver  = liver_curr === 'normal';
+      const crConst  = const_curr === 'none';
+      const crLymph  = lymph_curr !== null && lymph_curr < 4;
+      const crPlt    = plt_curr !== null && plt_curr >= 100;
+      const crHgb    = hgb_curr !== null && hgb_curr >= 110;
+      const crAnc    = anc_curr !== null && anc_curr >= 1500;
+      const crMarrowNormal = marrow === 'normal' && (marrow_pct === null || marrow_pct < 30);
+      const crMarrowDone   = marrow !== 'not_done';
+      const crAparams = crNodes && crSpleen && crLiver && crConst && crLymph;
+      const crBparams = crPlt && crHgb && crAnc;
 
       let response = 'SD';
       let desc = '';
       let notes = [];
-
-      // CR criteria — absolute thresholds, all must be met regardless of baseline
-      const crNodes = !hasAny || allNodesSmall;
-      const crSpleen = spleen_curr === null || spleen_curr < 13;
-      const crLiver = liver_curr === 'normal';
-      const crConst = const_curr === 'none';
-      const crLymph = lymph_curr !== null && lymph_curr < 4;
-      const crPlt = plt_curr !== null && plt_curr >= 100;
-      const crHgb = hgb_curr !== null && hgb_curr >= 11;
-      const crAnc = anc_curr !== null && anc_curr >= 1500;
-      const crMarrowNormal = marrow === 'normal' && (marrow_pct === null || marrow_pct < 30);
-      const crMarrowDone = marrow !== 'not_done';
-      const crAparams = crNodes && crSpleen && crLiver && crConst && crLymph;
-      const crBparams = crPlt && crHgb && crAnc;
-
-      // PR check with improvement logic
-      // B is satisfied if: B_met >= 1, OR all B params were normal at baseline (nothing to improve)
-      const B_satisfied = B_met >= 1 || B_all_normal_at_baseline;
-      const pr_met = (A_met >= pr_A_threshold) && (single_param_rule ? (A_met >= 1 || B_met >= 1) : B_satisfied);
 
       if (isPD) {
         response = 'PD';
@@ -1162,23 +1076,19 @@
         desc = 'CR s neúplnou obnovou dřeně — splněna A kritéria CR, ale přetrvává cytopenie (pravděpodobně léková toxicita)';
       } else if (pr_met && !lymphocytosis) {
         response = 'PR';
-        if (single_param_rule && total_abnormal === 1) {
-          desc = `Parciální remise — při pouze 1 abnormálním parametru před léčbou stačí zlepšení 1 parametru (pravidlo jediného parametru)`;
+        if (single_param_rule && A_abnormal === 1) {
+          desc = `Parciální remise — při 1 abnormálním parametru A stačí zlepšení 1 parametru A a ≥1 B nad prahem`;
         } else {
-          desc = `Parciální remise — zlepšení ≥${pr_A_threshold} parametrů skupiny A a ≥1 parametru skupiny B (splněno: A=${A_met}, B=${B_met})`;
+          desc = `Parciální remise — ≥2 parametry A zlepšeny (${A_met}/${A_abnormal}) a ≥1 parametr B nad prahem (${B_met} splněno)`;
         }
       } else if (pr_met && lymphocytosis) {
-        // PR criteria fully met (≥2A + ≥1B) AND lymphocytosis → PR-L
-        // Per iwCLL 2018 sec 5.3.4: lymphocytosis from kinase inhibitors = redistribution, not failure
         response = 'PR-L';
-        desc = `Parciální remise s lymfocytózou — splněna kritéria PR (A: ${A_met}/${pr_A_threshold}, B: ${B_met}/1), lymfocyty zvýšeny redistribucí`;
-        notes.push('Lymfocytóza u inhibitorů kináz (ibrutinib aj.) sama o sobě není PD — jde o redistribuci CLL buněk z lymfoidní tkáně do krve (iwCLL 2018 sec. 5.3.4)');
+        desc = `Parciální remise s lymfocytózou — splněna kritéria PR (A: ${A_met}/${A_abnormal}, B: ${B_met} nad prahem), lymfocyty zvýšeny redistribucí`;
+        notes.push('Lymfocytóza u inhibitorů kináz (ibrutinib aj.) sama o sobě není PD — redistribuce CLL buněk z lymfoidní tkáně do krve (iwCLL 2018 sec. 5.3.4)');
       } else {
         response = 'SD';
-        desc = `Stabilní onemocnění — nesplněna kritéria pro CR ani PR, bez progrese (zlepšeno A: ${A_met}/${A_abnormal}, B: ${B_met}/${B_abnormal})`;
-        if (A_abnormal === 0 && B_abnormal === 0) {
-          notes.push('Žádné parametry nebyly označeny jako patologické při baseline — zkontrolujte, zda jsou zadány baseline hodnoty');
-        }
+        desc = `Stabilní onemocnění — nesplněna kritéria pro CR ani PR, bez progrese`;
+        if (A_abnormal === 0) notes.push('Žádné parametry skupiny A nebyly patologické při baseline — zkontrolujte zadané baseline hodnoty');
       }
 
       // ---- RENDER ----
@@ -1194,35 +1104,34 @@
       descEl.textContent = desc;
 
       let html = '';
-
-      // Summary line for context
-      html += `<div style="font-size:0.72rem;color:var(--muted);margin-bottom:1rem;padding:0.6rem;background:var(--surface2);border-radius:6px;line-height:1.6">
-        Patologické parametry při baseline: <strong style="color:var(--text)">A: ${A_abnormal} | B: ${B_abnormal}</strong>
+      html += `<div style="font-size:0.72rem;color:var(--muted);margin-bottom:1rem;padding:0.6rem;background:var(--surface2);border-radius:6px;line-height:1.7">
+        Skupina A — patologické při baseline: <strong style="color:var(--text)">${A_abnormal}</strong> | zlepšeno: <strong style="color:var(--text)">${A_met}</strong> | požadováno: <strong style="color:var(--text)">${pr_A_threshold}</strong>
         ${single_param_rule ? ' <span style="color:var(--gold)">→ Platí pravidlo jediného parametru</span>' : ''}
-        <br>Splněná zlepšení: <strong style="color:var(--text)">A: ${A_met}/${A_abnormal} | B: ${B_met}/${B_abnormal}</strong>
+        <br>Skupina B — parametry nad prahem: <strong style="color:var(--text)">${B_met}</strong> | požadováno: <strong style="color:var(--text)">≥1</strong>
+        <span style="color:var(--muted);font-size:0.62rem"> (bez ohledu na baseline)</span>
       </div>`;
 
       aItems.forEach(item => {
-        const lbl = item.status === 'met' ? 'Zlepšeno' : item.status === 'warn' ? 'Lymfocytóza' : item.status === 'notmet' ? 'Nezlepšeno' : 'N/A (baseline norm.)';
+        const lbl = item.status === 'met' ? 'Zlepšeno' : item.status === 'warn' ? 'Lymfocytóza' : item.status === 'notmet' ? 'Nezlepšeno' : 'N/A';
         html += `<div class="breakdown-item">
           <div><span class="breakdown-name">${item.name}</span>${item.note ? `<br><span style="font-size:0.62rem;color:var(--gold)">${item.note}</span>` : ''}</div>
           <div style="text-align:right"><span class="breakdown-val" style="font-size:0.75rem">${item.val}</span><br>${badge(item.status, lbl)}</div>
         </div>`;
       });
       html += `<div class="breakdown-item" style="font-size:0.72rem;color:var(--accent);padding-top:0.7rem;border-top:1px solid var(--border);font-weight:500">
-        Skupina A — patologické při BL: <strong>${A_abnormal}</strong> | zlepšeno: <strong>${A_met}</strong> | požadováno: <strong>${pr_A_threshold}</strong>
+        Skupina A — zlepšeno: <strong>${A_met}/${A_abnormal}</strong> | požadováno: <strong>${pr_A_threshold}</strong>
       </div>`;
 
       bItems.forEach(item => {
-        const lbl = item.status === 'met' ? 'Zlepšeno' : item.status === 'warn' ? 'Pozor' : item.status === 'notmet' ? 'Nezlepšeno' : 'N/A (baseline norm.)';
+        const lbl = item.status === 'met' ? 'Nad prahem ✓' : item.status === 'warn' ? 'Pozor' : item.status === 'notmet' ? 'Pod prahem' : 'N/A';
         html += `<div class="breakdown-item">
-          <div><span class="breakdown-name">${item.name}</span>${item.note ? `<br><span style="font-size:0.62rem;color:var(--gold)">${item.note}</span>` : ''}</div>
+          <div><span class="breakdown-name">${item.name}</span>${item.note ? `<br><span style="font-size:0.62rem;color:var(--accent2)">${item.note}</span>` : ''}</div>
           <div style="text-align:right"><span class="breakdown-val" style="font-size:0.75rem">${item.val}</span><br>${badge(item.status, lbl)}</div>
         </div>`;
       });
       html += `<div class="breakdown-item" style="font-size:0.72rem;color:var(--accent2);padding-top:0.7rem;border-top:1px solid var(--border);font-weight:500">
-        Skupina B — patologické při BL: <strong>${B_abnormal}</strong> | zlepšeno: <strong>${B_met}</strong> | požadováno: <strong>${single_param_rule ? 0 : 1}</strong>
-        ${B_all_normal_at_baseline ? ' <span style="color:var(--muted)">(vše bylo normální → B automaticky splněno)</span>' : ''}
+        Skupina B — nad prahem: <strong>${B_met}</strong> | požadováno: <strong>≥1</strong>
+        <span style="color:var(--muted);font-size:0.65rem;display:block;margin-top:0.2rem;">Splněno pokud ≥1 B parametr dosahuje prahu — bez ohledu na baseline (iwCLL 2018 / PharmaSUG 2023)</span>
       </div>`;
 
       document.getElementById('breakdown-items').innerHTML = html;
@@ -1235,99 +1144,48 @@
         noteBox.style.display = 'none';
       }
 
-      // ---- GENERATE DOCUMENTATION TEXT ----
+      // ---- DOKUMENTACE ----
       const today = new Date().toLocaleDateString('cs-CZ');
       let docParts = [];
-
-      // Response label map
       const respLabels = {
-        'CR': 'kompletní remise (CR)',
-        'CRi': 'kompletní remise s neúplnou obnovou dřeně (CRi)',
-        'PR': 'parciální remise (PR)',
+        'CR':   'kompletní remise (CR)',
+        'CRi':  'kompletní remise s neúplnou obnovou dřeně (CRi)',
+        'PR':   'parciální remise (PR)',
         'PR-L': 'parciální remise s lymfocytózou (PR-L)',
-        'nPR': 'nodulární parciální remise (nPR)',
-        'PD': 'progrese onemocnění (PD)',
-        'SD': 'stabilní onemocnění (SD)'
+        'nPR':  'nodulární parciální remise (nPR)',
+        'PD':   'progrese onemocnění (PD)',
+        'SD':   'stabilní onemocnění (SD)'
       };
-      const respLabel = respLabels[response] || response;
+      docParts.push(`Hodnocení odpovědi (${today}): Jedná se o ${respLabels[response] || response}.`);
 
-      // Intro sentence
-      if (response === 'PD') {
-        docParts.push(`Hodnocení odpovědi (${today}): Jedná se o ${respLabel}.`);
-      } else {
-        docParts.push(`Hodnocení odpovědi (${today}): Jedná se o ${respLabel}.`);
-      }
-
-      // Reasons — collect human-readable improvements/findings
       let reasons = [];
-
-      // SPD
       if (spdPct !== null && hasAny) {
         if (spdPct <= -50) reasons.push(`pokles SPD lymfatických uzlin o ${Math.abs(spdPct).toFixed(0)}% (${baselineSPD.toFixed(2)} → ${currentSPD.toFixed(2)} cm²)`);
         else if (spdPct >= 50) reasons.push(`nárůst SPD o ${spdPct.toFixed(0)}% (progrese uzlin)`);
         else reasons.push(`změna SPD o ${spdPct > 0 ? '+' : ''}${spdPct.toFixed(0)}%`);
-      } else if (!hasAny && allNodesSmall) {
-        reasons.push('normalizace lymfatických uzlin (všechny LU ≤1.5 cm)');
       }
-
-      // Lymphocytes
-      if (lymph_curr !== null) {
-        if (lymph_base_abnormal) {
-          if (lymph_curr < 4) reasons.push(`normalizace lymfocytů (${lymph_base} → ${lymph_curr} ×10⁹/L)`);
-          else if (lymphocytosis) reasons.push(`redistribuční lymfocytóza (${lymph_curr} ×10⁹/L)`);
-        }
+      if (lymph_curr !== null && lymph_base_abnormal) {
+        if (lymph_curr < 4) reasons.push(`normalizace lymfocytů (${lymph_base} → ${lymph_curr} ×10⁹/L)`);
+        else if (lymphocytosis) reasons.push(`redistribuční lymfocytóza (${lymph_curr} ×10⁹/L)`);
       }
-
-      // Spleen
       if (spleen_curr !== null && spleen_base_abnormal) {
         const spPct = ((spleen_base - spleen_curr) / spleen_base * 100);
-        if (spPct >= 50 || spleen_curr < 13) reasons.push(`redukce splenomegalie (${spleen_base} → ${spleen_curr} cm)`);
-        else if (spleen_curr > spleen_base * 1.5) reasons.push(`progrese splenomegalie (${spleen_base} → ${spleen_curr} cm)`);
+        if (spPct >= 50 || spleen_curr < 130) reasons.push(`redukce splenomegalie (${spleen_base} → ${spleen_curr} mm)`);
+        else if (spleen_curr > spleen_base * 1.5) reasons.push(`progrese splenomegalie (${spleen_base} → ${spleen_curr} mm)`);
       }
-
-      // Liver
       if (liver_base === 'abnormal' && liver_curr === 'normal') reasons.push('normalizace hepatomegalie');
-      else if (liver_base === 'abnormal' && liver_curr === 'abnormal') reasons.push('přetrvávající hepatomegalie');
-
-      // Constitutional symptoms
       if (const_base === 'present' && const_curr === 'none') reasons.push('vymizení konstitučních příznaků');
-
-      // Platelets
-      if (plt_curr !== null) {
-        if (plt_base_abnormal && plt_curr >= 100) reasons.push(`normalizace trombocytů (${plt_base} → ${plt_curr} ×10⁹/L)`);
-        else if (plt_base_abnormal && plt_curr < plt_base * 0.5) reasons.push(`pokles trombocytů (${plt_base} → ${plt_curr} ×10⁹/L, -${((plt_base-plt_curr)/plt_base*100).toFixed(0)}%)`);
-        else if (!plt_base_abnormal && plt_curr >= 100) reasons.push(`trombocyty v normě (${plt_curr} ×10⁹/L)`);
-      }
-
-      // Hgb
-      if (hgb_curr !== null) {
-        if (hgb_base_abnormal && hgb_curr >= 11) reasons.push(`normalizace hemoglobinu (${hgb_base} → ${hgb_curr} g/dL)`);
-        else if (hgb_base !== null && (hgb_base - hgb_curr) >= 2) reasons.push(`pokles Hb ≥2 g/dL (${hgb_base} → ${hgb_curr} g/dL)`);
-        else if (!hgb_base_abnormal && hgb_curr >= 11) reasons.push(`hemoglobin v normě (${hgb_curr} g/dL)`);
-      }
-
-      // ANC
-      if (anc_curr !== null) {
-        if (anc_base_abnormal && anc_curr >= 1500) reasons.push(`normalizace neutrofilů (${anc_base} → ${anc_curr} ×10⁹/L)`);
-        else if (!anc_base_abnormal && anc_curr >= 1500) reasons.push(`neutrofily v normě (${anc_curr} ×10⁹/L)`);
-      }
-
-      // Marrow
+      if (plt_curr !== null && plt_curr >= 100) reasons.push(`trombocyty nad prahem (${plt_curr} ×10⁹/L)`);
+      if (hgb_curr !== null && hgb_curr >= 110) reasons.push(`hemoglobin nad prahem (${hgb_curr} g/L)`);
+      if (anc_curr !== null && anc_curr >= 1500) reasons.push(`neutrofily nad prahem (${anc_curr} ×10⁹/L)`);
       if (marrow === 'normal') reasons.push('normální nález v kostní dřeni');
       else if (marrow === 'cll_cells') reasons.push('přítomnost CLL buněk v kostní dřeni');
       else if (marrow === 'nodules') reasons.push('lymfoidní noduly v kostní dřeni');
       else if (marrow === 'not_done') reasons.push('biopsie kostní dřeně nebyla provedena');
-
-      // PD specific
       pdReason.forEach(r => reasons.push(r));
 
-      if (reasons.length > 0) {
-        docParts.push('Odůvodnění: ' + reasons.join(', ') + '.');
-      }
-
-      // Guideline note
+      if (reasons.length > 0) docParts.push('Odůvodnění: ' + reasons.join(', ') + '.');
       docParts.push('Hodnocení provedeno dle iwCLL 2018 guidelines.');
-
       document.getElementById('doc-output').value = docParts.join(' ');
 
       panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1349,7 +1207,6 @@
     addLN();
   }
 
-  // Init with one LN row
   addLN();
 </script>
 </body>
