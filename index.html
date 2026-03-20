@@ -1166,25 +1166,49 @@
       docParts.push(`Hodnocení odpovědi (${today}): Jedná se o ${respLabels[response] || response}.`);
 
       let reasons = [];
+      // SPD
       if (spdPct !== null && hasAny) {
-        if (spdPct <= -50) reasons.push(`pokles SPD lymfatických uzlin o ${Math.abs(spdPct).toFixed(0)}% (${baselineSPD.toFixed(2)} → ${currentSPD.toFixed(2)} cm²)`);
-        else if (spdPct >= 50) reasons.push(`nárůst SPD o ${spdPct.toFixed(0)}% (progrese uzlin)`);
-        else reasons.push(`změna SPD o ${spdPct > 0 ? '+' : ''}${spdPct.toFixed(0)}%`);
+        const spdBase = baselineSPD.toFixed(2);
+        const spdCurr = currentSPD.toFixed(2);
+        if (spdPct <= -50) reasons.push(`pokles SPD lymfatických uzlin o ${Math.abs(spdPct).toFixed(0)}% (baseline ${spdBase} cm² → aktuálně ${spdCurr} cm²)`);
+        else if (spdPct >= 50) reasons.push(`nárůst SPD o ${spdPct.toFixed(0)}% (baseline ${spdBase} cm² → aktuálně ${spdCurr} cm², progrese uzlin)`);
+        else reasons.push(`změna SPD o ${spdPct > 0 ? '+' : ''}${spdPct.toFixed(0)}% (baseline ${spdBase} cm² → aktuálně ${spdCurr} cm²)`);
       }
-      if (lymph_curr !== null && lymph_base_abnormal) {
-        if (lymph_curr < 4) reasons.push(`normalizace lymfocytů (${lymph_base} → ${lymph_curr} ×10⁹/L)`);
-        else if (lymphocytosis) reasons.push(`redistribuční lymfocytóza (${lymph_curr} ×10⁹/L)`);
+      // Lymfocyty
+      if (lymph_curr !== null) {
+        const lymphBase = lymph_base !== null ? `baseline ${lymph_base} ×10⁹/L → ` : '';
+        if (lymph_base_abnormal) {
+          if (lymph_curr < 4) reasons.push(`normalizace lymfocytů (${lymphBase}aktuálně ${lymph_curr} ×10⁹/L)`);
+          else if (lymphocytosis) reasons.push(`redistribuční lymfocytóza (${lymphBase}aktuálně ${lymph_curr} ×10⁹/L)`);
+        }
       }
+      // Slezina
       if (spleen_curr !== null && spleen_base_abnormal) {
         const spPct = ((spleen_base - spleen_curr) / spleen_base * 100);
-        if (spPct >= 50 || spleen_curr < 130) reasons.push(`redukce splenomegalie (${spleen_base} → ${spleen_curr} mm)`);
-        else if (spleen_curr > spleen_base * 1.5) reasons.push(`progrese splenomegalie (${spleen_base} → ${spleen_curr} mm)`);
+        if (spPct >= 50 || spleen_curr < 130) reasons.push(`redukce splenomegalie (baseline ${spleen_base} mm → aktuálně ${spleen_curr} mm)`);
+        else if (spleen_curr > spleen_base * 1.5) reasons.push(`progrese splenomegalie (baseline ${spleen_base} mm → aktuálně ${spleen_curr} mm)`);
       }
       if (liver_base === 'abnormal' && liver_curr === 'normal') reasons.push('normalizace hepatomegalie');
       if (const_base === 'present' && const_curr === 'none') reasons.push('vymizení konstitučních příznaků');
-      if (plt_curr !== null && plt_curr >= 100) reasons.push(`trombocyty nad prahem (${plt_curr} ×10⁹/L)`);
-      if (hgb_curr !== null && hgb_curr >= 110) reasons.push(`hemoglobin nad prahem (${hgb_curr} g/L)`);
-      if (anc_curr !== null && anc_curr >= 1500) reasons.push(`neutrofily nad prahem (${anc_curr} ×10⁹/L)`);
+      // Trombocyty
+      if (plt_curr !== null) {
+        const pltBase = plt_base !== null ? `baseline ${plt_base} → ` : '';
+        if (plt_curr >= 100) reasons.push(`trombocyty nad prahem (${pltBase}aktuálně ${plt_curr} ×10⁹/L)`);
+        else reasons.push(`trombocyty pod prahem (${pltBase}aktuálně ${plt_curr} ×10⁹/L)`);
+      }
+      // Hemoglobin
+      if (hgb_curr !== null) {
+        const hgbBase = hgb_base !== null ? `baseline ${hgb_base} → ` : '';
+        if (hgb_curr >= 110) reasons.push(`hemoglobin nad prahem (${hgbBase}aktuálně ${hgb_curr} g/L)`);
+        else reasons.push(`hemoglobin pod prahem (${hgbBase}aktuálně ${hgb_curr} g/L)`);
+      }
+      // ANC
+      if (anc_curr !== null) {
+        const ancBase = anc_base !== null ? `baseline ${anc_base} → ` : '';
+        if (anc_curr >= 1500) reasons.push(`neutrofily nad prahem (${ancBase}aktuálně ${anc_curr} ×10⁹/L)`);
+        else reasons.push(`neutrofily pod prahem (${ancBase}aktuálně ${anc_curr} ×10⁹/L)`);
+      }
+      // Dřeň
       if (marrow === 'normal') reasons.push('normální nález v kostní dřeni');
       else if (marrow === 'cll_cells') reasons.push('přítomnost CLL buněk v kostní dřeni');
       else if (marrow === 'nodules') reasons.push('lymfoidní noduly v kostní dřeni');
