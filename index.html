@@ -908,17 +908,23 @@
         note: (hasAny && !ln_abnormal_at_baseline) ? 'Bez baseline hodnot nelze hodnotit zlepšení' : null });
 
       // Lymphocytes
+      // DŮLEŽITÉ: redistribuční lymfocytóza NEZAPOČÍTÁVÁ se do A_abnormal.
+      // Je pouze flag pro PR-L, nesmí blokovat single_param_rule ani pr_met.
       let lymph_status = 'na', lymph_display = '—';
       const lymph_base_abnormal = lymph_base !== null && lymph_base > 5;
       if (lymph_curr !== null) {
         lymph_display = `${lymph_curr} ×10⁹/L`;
         if (lymph_base_abnormal) {
-          A_abnormal++;
           const lymph_pct = ((lymph_base - lymph_curr) / lymph_base) * 100;
-          if (lymph_curr < 4)          { A_met++; lymph_status = 'met'; }
-          else if (lymph_pct >= 50)    { A_met++; lymph_status = 'met'; }
-          else if (lymph_curr >= 5)    { lymphocytosis = true; lymph_status = 'warn'; }
-          else                          { lymph_status = 'notmet'; }
+          if (lymph_curr < 4) {
+            A_abnormal++; A_met++; lymph_status = 'met';
+          } else if (lymph_pct >= 50) {
+            A_abnormal++; A_met++; lymph_status = 'met';
+          } else if (lymph_curr >= 5) {
+            lymphocytosis = true; lymph_status = 'warn';
+          } else {
+            A_abnormal++; lymph_status = 'notmet';
+          }
         } else if (lymph_base !== null && !lymph_base_abnormal) {
           lymph_status = lymph_curr < 4 ? 'na' : 'notmet';
         } else {
@@ -926,7 +932,8 @@
         }
       }
       aItems.push({ name: 'Lymfocyty', val: lymph_display, status: lymph_status,
-        note: (!lymph_base_abnormal && lymph_base !== null) ? 'Normální při baseline — nezapočítává se pro PR' : null });
+        note: lymphocytosis ? 'Redistribuční lymfocytóza — nezapočítává se do A parametrů, triggeruje PR-L' :
+              (!lymph_base_abnormal && lymph_base !== null) ? 'Normální při baseline — nezapočítává se pro PR' : null });
 
       // Spleen
       let spleen_status = 'na', spleen_display = '—';
